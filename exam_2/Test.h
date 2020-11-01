@@ -167,7 +167,10 @@ public:
 			cout << "Неправильный ввод!" << endl;
 			return;
 		}
-		if (remove(v_test[ind].path) == 0) cout << "Удаление прошло успешно!";
+		if (remove(v_test[ind].path) == 0) {
+			cout << "Удаление прошло успешно!";
+			v_test.erase(v_test.begin() + ind);
+		}
 		else cout << "Что-то пошло не так..";
 	}
 	void saveToFile(int ind, const char* fileName, bool mode = true) { //<-- Функция сохранения измененного/добавленого теста
@@ -346,5 +349,16 @@ public:
 			}
 			}
 		}
+	}
+	void saveTests() { //<-- Функция сохранения путей к новым/удаленным тестам
+		FILE* f;
+		fopen_s(&f, "tests.txt", "w+");
+		for (int i = 0; i < v_test.size(); i++) {
+			char buffer[_MAX_PATH] = "";
+			strcpy_s(buffer, v_test[i].path);
+			strcat_s(buffer, "\n");
+			fwrite(buffer, strlen(buffer), 1, f);
+		}
+		fclose(f);
 	}
 };
