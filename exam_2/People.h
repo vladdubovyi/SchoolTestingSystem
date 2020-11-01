@@ -387,9 +387,11 @@ private:
 			strcpy_s(username, name);
 			strcpy_s(password, pass);
 			cout << "Доступ разрешен!" << endl;
+			fclose(f);
 			return true;
 		}
 		else {
+			fclose(f);
 			cout << "Неправильный логин или пароль!" << endl;
 			return false;
 		}
@@ -402,6 +404,7 @@ private:
 
 		if (_filelength(_fileno(f)) != 0) { //<-- Если файл не пустой, значить в нем уже есть записи
 			cout << "Учетная запись администратора уже создана! В системе может быть только один администратор\n";
+			fclose(f);
 			return false;
 		}
 		fclose(f);
