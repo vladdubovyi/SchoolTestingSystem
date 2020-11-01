@@ -3,7 +3,7 @@
 
 using namespace std;
 
-char g_seed[] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890]";
+char g_seed[] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890]"; //<-- Глобальная переменная сида шифровки
 //<-- Реализация функций шифровки/дешифровки -->//
 char* encrypt(const char* str, bool mode) {
 	char seed[64] = "";
